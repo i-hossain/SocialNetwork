@@ -19,6 +19,7 @@
 /* Begin PBXFileReference section */
 		17D5330AF27369E3DA47F35F /* Pods-SocialNetwork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialNetwork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialNetwork/Pods-SocialNetwork.debug.xcconfig"; sourceTree = "<group>"; };
 		567B7132B477BB3D21D70196 /* Pods-SocialNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialNetwork.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialNetwork/Pods-SocialNetwork.release.xcconfig"; sourceTree = "<group>"; };
+		92CE7F3C1ED7F2FC002FDFBF /* SocialNetwork.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialNetwork.entitlements; sourceTree = "<group>"; };
 		ECBB6DD61ECB6A9000509171 /* SocialNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBB6DD91ECB6A9000509171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBB6DDB1ECB6A9000509171 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		ECBB6DD81ECB6A9000509171 /* SocialNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				92CE7F3C1ED7F2FC002FDFBF /* SocialNetwork.entitlements */,
 				ECBB6DEF1ECB74E800509171 /* Model */,
 				ECBB6DEE1ECB74E300509171 /* View */,
 				ECBB6DED1ECB74D900509171 /* Controller */,
@@ -152,6 +154,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = Y3C6BG2S4Y;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -365,6 +372,7 @@
 			baseConfigurationReference = 17D5330AF27369E3DA47F35F /* Pods-SocialNetwork.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocialNetwork/SocialNetwork.entitlements;
 				DEVELOPMENT_TEAM = Y3C6BG2S4Y;
 				INFOPLIST_FILE = SocialNetwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -379,6 +387,7 @@
 			baseConfigurationReference = 567B7132B477BB3D21D70196 /* Pods-SocialNetwork.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocialNetwork/SocialNetwork.entitlements;
 				DEVELOPMENT_TEAM = Y3C6BG2S4Y;
 				INFOPLIST_FILE = SocialNetwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
