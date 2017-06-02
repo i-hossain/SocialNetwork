@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 import Firebase
+import SwiftKeychainWrapper
 
 class LoginVC: UIViewController {
     
@@ -20,6 +21,15 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
+        
     }
 
     @IBAction func facebookBtnPressed(_ sender: Any) {
@@ -30,7 +40,7 @@ class LoginVC: UIViewController {
                 print(error)
             case .cancelled:
                 print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+            case .success(let _, let _, let accessToken):
                 print("Logged in!")
                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
                 self.authenticateWithFirebase(credential)
@@ -43,6 +53,7 @@ class LoginVC: UIViewController {
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
                     print("Successfully logged in with email")
+                    self.completeSignIn(id: (user?.uid)!)
                 }
                 else {
                     Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -51,6 +62,7 @@ class LoginVC: UIViewController {
                         }
                         else {
                             print("Successfully created user account")
+                            self.completeSignIn(id: (user?.uid)!)
                         }
                     })
                 }
@@ -66,10 +78,16 @@ class LoginVC: UIViewController {
             }
             else {
                 print("Successfully authenticated with Firebase")
+                self.completeSignIn(id: (user?.uid)!)
             }
         }
     }
     
+    func completeSignIn(id: String) {
+        let keychain = KeychainWrapper.standard.set(id, forKey: "uid")
+        debugPrint(keychain)
+        performSegue(withIdentifier: "goToFeed", sender: nil)
+    }
     
 }
 

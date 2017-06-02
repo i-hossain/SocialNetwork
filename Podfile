@@ -10,4 +10,5 @@ target 'SocialNetwork' do
 
   pod 'FacebookLogin'
 
+  pod 'SwiftKeychainWrapper', '~> 3.0'
 end
